@@ -3,7 +3,7 @@ import About from "../components/About/About";
 import AddListing from "../components/AddListing/AddListing";
 import FAQ from "../components/FAQ/FAQ";
 import Home from "../components/Home/Home";
-import Main from "../components/Main/Main";
+import Main from "../components/layout/Main";
 import Page404 from "../components/Page404/Page404";
 import SearchRentals from "../components/SearchRentals/SearchRentals";
 import Login from "../components/Login/Login";
