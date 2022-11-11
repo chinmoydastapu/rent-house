@@ -1,10 +1,10 @@
 header {
     background:
         /* top, transparent black, faked with gradient */
-        linear-gradient(rgba(0, 0, 0, 0.8),
-            rgba(0, 0, 0, 0.6)),
+        linear-gradient(rgba(0, 0, 0, 0.0),
+            rgba(0, 0, 0, 0.0)),
         /* bottom, image */
-        url('../../images/header-img.png');
+        url('https://cdn.dribbble.com/users/277378/screenshots/3708403/housetransform_800x600.gif');
     background-size: cover;
 
     width: 100%;
@@ -23,4 +23,8 @@ header {
             rgba(0, 0, 0, 0.8)),
         url('../../images/featured-house.jpg');
     background-size: cover;
+}
+
+.provide-bg {
+    background-color: #ffeecb;
 }

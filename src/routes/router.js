@@ -8,6 +8,7 @@ import Page404 from "../components/Page404/Page404";
 import SearchRentals from "../components/SearchRentals/SearchRentals";
 import Login from "../components/Login/Login";
 import Signup from "../components/Signup/Signup";
+import ProtectedRoute from "../components/ProtectedRoute/ProtectedRoute";
 
 export const router = createBrowserRouter([
     {
@@ -24,11 +25,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/search-rentals',
-                element: <SearchRentals></SearchRentals>
+                element: <ProtectedRoute><SearchRentals></SearchRentals></ProtectedRoute>
             },
             {
                 path: '/add-listing',
-                element: <AddListing></AddListing>
+                element: <ProtectedRoute><AddListing></AddListing></ProtectedRoute>
             },
             {
                 path: '/login',

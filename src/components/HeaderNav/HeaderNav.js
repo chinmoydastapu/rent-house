@@ -1,22 +1,32 @@
 import React from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../Contexts/UserContext';
 
 const HeaderNav = () => {
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.error(error));
+    }
+
     return (
-        <nav className="navbar bg-slate-50 shadow-lg sticky top-0 px-10">
+        <nav className="navbar bg-slate-50 shadow-lg sticky top-0 px-10 z-10">
             <div className="navbar">
                 <div className="dropdown">
-                    <label tabindex="0" className="btn btn-ghost lg:hidden">
+                    <label tabIndex="0" className="btn btn-ghost lg:hidden">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
                                 d="M4 6h16M4 12h8m-8 6h16" />
                         </svg>
                     </label>
-                    <ul tabindex="0"
+                    <ul tabIndex="0"
                         className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         <li><Link to='/home'>Home</Link></li>
-                        <li tabindex="0">
+                        <li tabIndex="0">
                             <span>
                                 Tenant
                                 <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -30,7 +40,7 @@ const HeaderNav = () => {
                                 <li><Link to='/login'>Log In</Link></li>
                             </ul>
                         </li>
-                        <li tabindex="0">
+                        <li tabIndex="0">
                             <span>
                                 Householder
                                 <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -44,6 +54,20 @@ const HeaderNav = () => {
                             </ul>
                         </li>
                         <li><Link to='/about'>About</Link></li>
+                        <span>
+                            {
+                                user?.uid ?
+                                    <span className='flex justify-center items-center gap-3'>
+                                        <span className='tooltip tooltip-left' data-tip={user.displayName}><img className='w-10 h-10 rounded-full' src={user?.photoURL} alt="" /></span>
+                                        <button onClick={handleLogOut} className='btn btn-primary btn-sm'>Log Out</button>
+                                    </span>
+                                    :
+                                    <>
+                                        <Link to='/login'><button className='btn btn-primary btn-sm'>Log In</button></Link>
+                                        <Link to='/signup'><button className='btn btn-primary btn-sm ml-3'>Sign Up</button></Link>
+                                    </>
+                            }
+                        </span>
                     </ul>
                 </div>
                 <Link to='/' className="text-2xl"><i className="fa-solid fa-house-circle-check text-secondary mr-[0.3em]"></i><span
@@ -52,7 +76,7 @@ const HeaderNav = () => {
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">
                     <li className='mr-3'><Link to='/home'>Home</Link></li>
-                    <li tabindex="0" className='mr-3'>
+                    <li tabIndex="0" className='mr-3'>
                         <span>
                             Tenant
                             <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -66,7 +90,7 @@ const HeaderNav = () => {
                             <li><Link to='/login'>Log In</Link></li>
                         </ul>
                     </li>
-                    <li tabindex="0" className='mr-3'>
+                    <li tabIndex="0" className='mr-3'>
                         <span>
                             Householder
                             <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -81,7 +105,22 @@ const HeaderNav = () => {
                     </li>
                     <li className='mr-3'><Link to='/about'>About</Link></li>
                 </ul>
-                <Link to='/login'><button className="btn btn-primary">Log In</button></Link>
+                <div className='ml-4 flex justify-center items-center gap-3'>
+                    <span>
+                        {
+                            user?.uid ?
+                                <span className='flex justify-center items-center gap-3'>
+                                    <span className='tooltip tooltip-left' data-tip={user.displayName}><img className='w-10 h-10 rounded-full' src={user?.photoURL} alt="" /></span>
+                                    <button onClick={handleLogOut} className='btn btn-primary btn-sm'>Log Out</button>
+                                </span>
+                                :
+                                <>
+                                    <Link to='/login'><button className='btn btn-primary btn-sm'>Log In</button></Link>
+                                    <Link to='/signup'><button className='btn btn-primary btn-sm ml-3'>Sign Up</button></Link>
+                                </>
+                        }
+                    </span>
+                </div>
             </div>
         </nav>
     );
