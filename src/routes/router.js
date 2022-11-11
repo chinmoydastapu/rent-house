@@ -25,6 +25,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/search-rentals',
+                loader: () => fetch('houses.json'),
                 element: <ProtectedRoute><SearchRentals></SearchRentals></ProtectedRoute>
             },
             {

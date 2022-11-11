@@ -1,5 +1,6 @@
 import React from 'react';
-import { FaCheckCircle } from 'react-icons/fa';
+import { FaCheckCircle, FaSearch } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import './style.css';
 // import ProvideImg from '../../images/animated-house.png';
 
@@ -13,8 +14,8 @@ const Provide = () => {
                     <p className="text-gray-600 capitalize"><FaCheckCircle className='inline mr-2 text-green-500'></FaCheckCircle>Contact Facilities between buyer and seller</p>
                     <p className="text-gray-600 mt-3 capitalize"><FaCheckCircle className='inline mr-2 text-green-500'></FaCheckCircle>Rent house at almost free of cost</p>
                     <p className="text-gray-600 mt-3 capitalize"><FaCheckCircle className='inline mr-2 text-green-500'></FaCheckCircle>Safe and trustworthy services</p>
-                    <button className="btn btn-primary mt-8"><i className="fa-solid fa-magnifying-glass mr-2"></i><a href="/src/search-rentals.html">Search
-                        House</a></button>
+                    <button className="btn btn-primary mt-8"><FaSearch className='mr-2'></FaSearch><Link to='/search-rentals'>Search
+                        House</Link></button>
                 </div>
                 <div className='md:1/2'>
                     <img className="min-w-full" src="https://cdn.dribbble.com/users/5068307/screenshots/14301530/media/a549df3302d078abacc7955d46c70a77.gif" alt="" />
