@@ -110,7 +110,7 @@ const HeaderNav = () => {
                         {
                             user?.uid ?
                                 <span className='flex justify-center items-center gap-3'>
-                                    <span className='tooltip tooltip-left' data-tip={user.displayName}><img className='w-10 h-10 rounded-full' src={user?.photoURL} alt="" /></span>
+                                    <span className='tooltip tooltip-left' data-tip={user.displayName}><img className='w-10 h-10 rounded-full' src={user?.photoURL} alt="https://i.ytimg.com/vi/sr_vL2anfXA/maxresdefault.jpg" /></span>
                                     <button onClick={handleLogOut} className='btn btn-primary btn-sm'>Log Out</button>
                                 </span>
                                 :
