@@ -1,18 +1,36 @@
 import React from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 
 const AddListing = () => {
     const handleAddListing = event => {
         event.preventDefault();
 
         const form = event.target;
-        const houseTitle = form.housename.value;
-        const houseLocation = form.houselocation.value;
-        const bedroom = form.bed.value;
-        const bathroom = form.bath.value;
+        const title = form.housename.value;
+        const location = form.houselocation.value;
+        const streetAddress = form.street_address.value;
+        const bed = form.bed.value;
+        const bath = form.bath.value;
         const rent = form.rent.value;
-        const imageURL = form.houseimg.value;
+        const image = form.houseimg.value;
 
-        console.log(houseTitle, houseLocation, bedroom, bathroom, rent, imageURL);
+        const user={title, location, streetAddress, bed, bath, rent, image}
+
+        fetch("http://localhost:5000/houses",{
+            method:"POST",
+            headers:{
+                "content-type":"application/json"
+            },
+            body:JSON.stringify(user)
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data)
+            if(data.acknowledged){
+                toast.success("your house is added successfully")
+                form.reset()
+            }
+        })
     };
 
     return (
@@ -33,37 +51,37 @@ const AddListing = () => {
                                 <div className="grid grid-cols-6 gap-6">
                                     <div className="col-span-6 sm:col-span-3">
                                         <label htmlFor="house-name" className="block text-sm font-medium text-gray-700">House Title</label>
-                                        <input type="text" name="housename" id="house-name" autoComplete="given-name" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-slate-50 p-2" required />
+                                        <input type="text" name="housename" id="house-name" autoComplete="given-name" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-slate-100 p-2" required />
                                     </div>
 
                                     <div className="col-span-6 sm:col-span-3">
                                         <label htmlFor="house-location" className="block text-sm font-medium text-gray-700">House Location</label>
-                                        <input type="text" name="houselocation" id="house-location" autoComplete="family-name" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-slate-50 p-2" required />
+                                        <input type="text" name="houselocation" id="house-location" autoComplete="family-name" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-slate-100 p-2" required />
                                     </div>
 
                                     <div className="col-span-6 sm:col-span-4">
                                         <label htmlFor="rent" className="block text-sm font-medium text-gray-700">Appr. Rent</label>
-                                        <input type="text" name="rent" id="rent" autoComplete="rent" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-slate-50 p-2" required />
+                                        <input type="text" name="rent" id="rent" autoComplete="rent" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-slate-100 p-2" required />
                                     </div>
 
                                     <div className="col-span-6">
-                                        <label htmlFor="street_address" className="block text-sm font-medium text-gray-700">Street Address<sup>(optional)</sup></label>
-                                        <input type="text" name="street_address" id="street_address" autoComplete="street-address" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-slate-50 p-2" />
+                                        <label htmlFor="street_address" className="block text-sm font-medium text-gray-700">Street Address</label>
+                                        <input type="text" name="street_address" id="street_address" autoComplete="street-address" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-slate-100 p-2" />
                                     </div>
 
                                     <div className="col-span-6 sm:col-span-6 lg:col-span-2">
                                         <label htmlFor="bed" className="block text-sm font-medium text-gray-700">Bed</label>
-                                        <input type="text" name="bed" id="bed" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-slate-50 p-2" required />
+                                        <input type="text" name="bed" id="bed" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-slate-100 p-2" required />
                                     </div>
 
                                     <div className="col-span-6 sm:col-span-3 lg:col-span-2">
                                         <label htmlFor="bath" className="block text-sm font-medium text-gray-700">Bath</label>
-                                        <input type="text" name="bath" id="bath" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-slate-50 p-2" required />
+                                        <input type="text" name="bath" id="bath" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-slate-100 p-2" required />
                                     </div>
 
                                     <div className="col-span-6 sm:col-span-3 lg:col-span-2">
                                         <label htmlFor="img-url" className="block text-sm font-medium text-gray-700">House Image</label>
-                                        <input type="text" name="houseimg" id="img-url" autoComplete="img-url" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-slate-50 p-2" required />
+                                        <input type="text" name="houseimg" id="img-url" autoComplete="img-url" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-slate-100 p-2" required />
                                     </div>
                                 </div>
                             </div>
@@ -76,6 +94,7 @@ const AddListing = () => {
                     </form>
                 </div>
             </div>
+            <Toaster></Toaster>
         </div>
     );
 };
