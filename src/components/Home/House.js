@@ -2,11 +2,11 @@ import React from 'react';
 import { FaBed, FaToilet } from 'react-icons/fa';
 
 const House = ({ house }) => {
-    const { bed, bath, rent, image, location, title } = house;
+    const { bed, bath, rent, banner_img, location, title } = house;
 
     return (
         <div className="mb-7 md:mb-0 card bg-slate-100 shadow-xl">
-            <figure><img className='w-full h-52 hover:scale-125 transition ease-in-out duration-700 hover:brightness-50' src={image} alt="..." /></figure>
+            <figure><img className='w-full h-52 hover:scale-125 transition ease-in-out duration-700 hover:brightness-50' src={banner_img} alt="..." /></figure>
             <div className="card-body">
                 <h2 className="card-title">
                     {title}

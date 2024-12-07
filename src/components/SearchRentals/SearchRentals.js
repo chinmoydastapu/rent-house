@@ -44,7 +44,7 @@ const SearchRentals = () => {
                     <h1 className='text-4xl font-bold text-center'>Total <span className='text-primary'>{filteredHouses.length}</span> houses found</h1>
                     <div className='my-16 mx-10 sm:grid sm:grid-cols-2 md:grid-cols-3 gap-7'>
                         {
-                            filteredHouses.map(house => <House key={house.id} house={house}></House>)
+                            filteredHouses.map((house, idx) => <House key={idx} house={house}></House>)
                         }
                     </div>
                 </>

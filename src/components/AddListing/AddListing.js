@@ -1,36 +1,29 @@
 import React from 'react';
 import toast, { Toaster } from 'react-hot-toast';
+import { postHouse } from '../../housesAPI'
 
 const AddListing = () => {
-    const handleAddListing = event => {
+    const handleAddListing = async event => {
         event.preventDefault();
 
         const form = event.target;
         const title = form.housename.value;
         const location = form.houselocation.value;
-        const streetAddress = form.street_address.value;
+        const street_address = form.street_address.value;
         const bed = form.bed.value;
         const bath = form.bath.value;
         const rent = form.rent.value;
-        const image = form.houseimg.value;
+        const banner_img = form.houseimg.value;
 
-        const user={title, location, streetAddress, bed, bath, rent, image}
+        const houseListingData = { title, location, street_address, bed, bath, rent, banner_img }
 
-        fetch("http://localhost:5000/houses",{
-            method:"POST",
-            headers:{
-                "content-type":"application/json"
-            },
-            body:JSON.stringify(user)
-        })
-        .then(res=>res.json())
-        .then(data=>{
-            console.log(data)
-            if(data.acknowledged){
-                toast.success("your house is added successfully")
-                form.reset()
-            }
-        })
+        const resp = await postHouse(houseListingData);
+        if(resp.status === 200) {
+            toast.success("Your house is added successfully")
+            form.reset()
+        } else {
+            toast.error("Your house is not added")
+        }
     };
 
     return (
